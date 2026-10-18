@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accessing Core Databases...</title>
+    <style>
+        body {
+            background-color: #050505;
+            color: #00ff33;
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+        .terminal {
+            width: 90%;
+            max-width: 600px;
+            background: rgba(0, 0, 0, 0.9);
+            border: 1px solid #00ff33;
+            box-shadow: 0 0 20px rgba(0, 255, 51, 0.2);
+            padding: 20px;
+            border-radius: 5px;
+        }
+        .header {
+            border-bottom: 1px solid #00ff33;
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+        }
+        .output {
+            min-height: 250px;
+            white-space: pre-wrap;
+            line-height: 1.5;
+        }
+        .btn {
+            background: transparent;
+            border: 1px solid #00ff33;
+            color: #00ff33;
+            padding: 8px 15px;
+            cursor: pointer;
+            font-family: inherit;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+            display: inline-block; /* Aligned for initial access */
+        }
+        .btn:hover {
+            background: #00ff33;
+            color: #000;
+            box-shadow: 0 0 10px #00ff33;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Background Music Element (Cyberpunk Hack Beat) -->
+<audio id="bg-music" loop>
+    <source src="https://mixkit.co" type="audio/mpeg">
+</audio>
+
+<div class="terminal">
+    <div class="header">
+        <span>SYSTEM_HACK_INITIALIZED.sh</span>
+        <span>STATUS: ACTIVE</span>
+    </div>
+    <div class="output" id="terminal-output">
+        <span style="color: #ffffff; font-weight: bold;">[SYSTEM INITIALIZED]</span><br>
+        Click below to bypass security grids and establish audio sync connection...
+    </div>
+    <!-- Combined button to allow music permission and trigger script -->
+    <button class="btn" id="next-btn" onclick="initializeBreach()">BYPASS SECURITY</button>
+</div>
+
+<script>
+    const output = document.getElementById('terminal-output');
+    const btn = document.getElementById('next-btn');
+    const music = document.getElementById('bg-music');
+
+    const lines = [
+        "Connecting to secure server...",
+        "Bypassing firewalls... [SUCCESS]",
+        "Searching for the most beautiful person in the universe...",
+        "Locating data files...",
+        "CRITICAL ERROR: System overloaded by her smile. 😍",
+        "Target identified. Initializing praise protocol..."
+    ];
+
+    const compliments = [
+        "Analyzing eyes... Result: Simpler than starlight, deeper than black holes. ✨",
+        "Analyzing smile... Result: Highly infectious, cures all sadness instantly. 💖",
+        "Analyzing personality... Result: 100% pure, irreplaceable, and awesome. 👑",
+        "Final Verdict: Computer hang ho sakta hai, par aapki tareef khatam nahi ho sakti! 😉",
+        "\n[HACK COMPLETE] - Made with ❤️ by Your Developer Boy."
+    ];
+
+    function initializeBreach() {
+        // Starts the background cyberpunk music seamlessly on user click
+        music.play().catch(e => console.log("Audio block bypass:", e));
+        btn.style.display = "none";
+        output.innerHTML = "";
+        typeLine(0);
+    }
+
+    function typeLine(index) {
+        if (index < lines.length) {
+            output.innerHTML += lines[index] + "\n";
+            setTimeout(() => typeLine(index + 1), 1200);
+        } else {
+            btn.innerHTML = "DECRYPT DATA";
+            btn.setAttribute("onclick", "startCompliments()");
+            btn.style.display = "inline-block";
+        }
+    }
+
+    function startCompliments() {
+        btn.style.display = "none";
+        output.innerHTML = "DECRYPTING PRIVATE_RECORDS... \n\n";
+        typeCompliment(0);
+    }
+
+    function typeCompliment(index) {
+        if (index < compliments.length) {
+            output.innerHTML += compliments[index] + "\n\n";
+            setTimeout(() => typeCompliment(index + 1), 2000);
+        }
+    }
+</script>
+
+</body>
+</html>
