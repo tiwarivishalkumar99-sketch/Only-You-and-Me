@@ -47,7 +47,7 @@
             font-family: inherit;
             margin-top: 15px;
             transition: all 0.3s ease;
-            display: inline-block; /* Aligned for initial access */
+            display: inline-block;
         }
         .btn:hover {
             background: #00ff33;
@@ -58,8 +58,9 @@
 </head>
 <body>
 
-<!-- Background Music Element (Cyberpunk Hack Beat) -->
-<audio id="bg-music" loop>
+<!-- High-reliability audio stream with backup -->
+<audio id="bg-music" loop preload="auto">
+    <source src="https://soundhelix.com" type="audio/mpeg">
     <source src="https://mixkit.co" type="audio/mpeg">
 </audio>
 
@@ -70,9 +71,8 @@
     </div>
     <div class="output" id="terminal-output">
         <span style="color: #ffffff; font-weight: bold;">[SYSTEM INITIALIZED]</span><br>
-        Click below to bypass security grids and establish audio sync connection...
+        Click below to bypass security grids and engage core audio frequencies...
     </div>
-    <!-- Combined button to allow music permission and trigger script -->
     <button class="btn" id="next-btn" onclick="initializeBreach()">BYPASS SECURITY</button>
 </div>
 
@@ -99,8 +99,21 @@
     ];
 
     function initializeBreach() {
-        // Starts the background cyberpunk music seamlessly on user click
-        music.play().catch(e => console.log("Audio block bypass:", e));
+        // Explicit volume setting and play trigger
+        music.volume = 0.6;
+        
+        let playPromise = music.play();
+        
+        if (playPromise !== undefined) {
+            playPromise.then(_ => {
+                console.log("Audio started successfully!");
+            }).catch(error => {
+                console.log("Audio playback failed:", error);
+                // Fail-safe: updates text if browser tightly blocked it
+                output.innerHTML += "\n[NOTE: Unblock audio permission in browser if silent]";
+            });
+        }
+        
         btn.style.display = "none";
         output.innerHTML = "";
         typeLine(0);
@@ -133,3 +146,4 @@
 
 </body>
 </html>
+
